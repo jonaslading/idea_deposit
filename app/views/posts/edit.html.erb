@@ -1,0 +1,31 @@
+<h1>Edit: <%=@post.title%></h1>
+
+<%= form_for @post do |form| %>
+	
+	<% if @post.errors.any? %>
+		<h2>Errors:</h2>
+		<ul>
+			<% @post.errors.full_messages.each do |message| %>
+				<li><%= message %></li>
+			<% end %>
+		</ul>
+	<% end %>
+
+<!--
+	<p>
+		<%= form.label :title %><br />
+		<%= form.text_field :title %>
+	</p>
+-->
+		<p>
+		<%= form.label :content %><br />
+		<%= form.text_area :content %>
+	</p>
+	<p>
+		<%= form.submit "Update Post"  %>
+	</p>
+	<p>
+		<%= link_to "Delete", @post, :confirm => "Are you sure you want to delete this idea and all files its associated dropbox folder?", :method => :delete %>
+
+	</p>
+<% end %>

@@ -1,0 +1,13 @@
+<h1><%= @post.title %></h1>
+<p><%= @post.content %></p>
+
+<small>Updated by: <%= @post.modified_by %></small>
+<small> at <%= @post.updated_at %></small>
+</br>
+<small><%= link_to "Edit", edit_post_path(@post.id) %></small>
+
+<!- list all files in dropbox folder   ->
+<% @dbcontentdata['contents'].each do |p| %>
+<p>		<%= p['path'] %>	</p>
+
+<% end %>
