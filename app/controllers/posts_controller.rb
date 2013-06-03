@@ -39,9 +39,7 @@ class PostsController < ApplicationController
 		dbsession = DropboxSession.deserialize(session[:dropbox_session])
 		client = DropboxClient.new(dbsession, ACCESS_TYPE) #raise an exception if session not authorized
 		dbcontentdata = client.metadata(ROOT_FOLDER+@post.title)
-		puts dbcontentdata
 		dbcontentdata['contents'].each do |i|
-			puts i
 			#do your string manipulation shizzle e.g.
 			@dbdata.paths.push(i['path'].split('/').last)	
 		end
