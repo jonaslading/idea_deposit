@@ -1,0 +1,24 @@
+<h1>IdéBanken Peripheral Display</h1>
+
+
+<p>All posts</p>
+<% @posts.each do |post| %>
+	<h2><%= post.title%></h2>
+
+	<small><%= post.modified_by %></small>
+<% end %>
+
+<p>Lastest two</p>
+<% @lasttwo.each do |post| %>
+	<h2><%= post.title%></h2>
+
+	<small><%= post.modified_by %></small>
+<% end %>
+
+<p>inside two hours</p>
+<% @newposts.each do |post| %>
+	<h2><%= post.title%></h2>
+
+	<small><%= post.updated_at %></small>
+<% end %>
+
