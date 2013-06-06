@@ -1,9 +1,10 @@
 Blog::Application.routes.draw do
 
-	match 'peripheral', :controller => 'peripherals', :action => 'index'
+	match 'peripheral', :controller => 'peripherals', :action => 'display'
 	match 'posts/authorize', :controller => 'posts', :action => 'authorize'
-	resources :posts
+	match 'peripherals/get_last_two' => 'peripherals#get_last_two'
 	
+	resources :posts
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
