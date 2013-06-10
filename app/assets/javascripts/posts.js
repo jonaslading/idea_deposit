@@ -14,22 +14,27 @@ $(function(){
 
         change: function(event, ui) {
 	        $('input#post_progress').val(ui.value);
+	        
 	    }
     });
-/*
+
     $( "#slider" ).slider({
         value: $('input#post_progress').val(),
     });
-*/
+    
+    
 	$('#slider').hide();
-	$('#post_status').hide();
+	if($('select#post_status').val() == 2){
+			$('#slider').show();
+	}
+
 	
-	$("input[name='post[title]']").bind('change', function(){
-		$('#post_status').show();
-	});
-	
-	//eventlistner virker ikke
-	$("input[name='post[status]']").bind('change', function(){
-		$('#slider').show();
+	$("select[name='post[status]']").bind('change',function(){
+		if($('select#post_status').val() == 2){
+			$('#slider').show();
+		}else{
+			$('#slider').hide();
+		}
+
 	});
 });

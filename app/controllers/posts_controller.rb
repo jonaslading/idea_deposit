@@ -24,7 +24,12 @@ class PostsController < ApplicationController
 				redirect_to :action => 'authorize', :notice => "session not authorized"
 			else
 				session[:dropbox_session] = dbsession.serialize
+				
 				@posts = Post.all
+				@post = Post.new
+				@latest = Post.limit(3).order('updated_at desc')
+
+
 			end
 		end
 	end
@@ -39,6 +44,9 @@ class PostsController < ApplicationController
 		dbsession = DropboxSession.deserialize(session[:dropbox_session])
 		client = DropboxClient.new(dbsession, ACCESS_TYPE) #raise an exception if session not authorized
 		dbcontentdata = client.metadata(ROOT_FOLDER+@post.title)
+		link = client.shares(ROOT_FOLDER+@post.title)
+		@folderlink = link['url']
+		
 		dbcontentdata['contents'].each do |i|
 			#do your string manipulation shizzle e.g.
 			@dbdata.paths.push(i['path'].split('/').last)	
@@ -59,9 +67,10 @@ class PostsController < ApplicationController
 
 			#creates a idea-folder in the shared dropbox directory
 			client.file_create_folder(ROOT_FOLDER+params[:post][:title])
-			redirect_to posts_path, :notice => "Your post was saved"
+			redirect_to posts_path, :notice => "Your idea was saved"
 		else
 			render "new"
+			#redirect_to posts_path, :notice => "Your idea has not been saved"
 		end
 	end
 	
@@ -77,7 +86,7 @@ class PostsController < ApplicationController
 		@post.modified_by = "#{info['display_name']}" 
 
 		if @post.update_attributes(params[:post])
-			redirect_to posts_path, :notice => "Your post has been updated"
+			redirect_to posts_path, :notice => "Your idea has been updated"
 		else
 			render "edit"
 		end

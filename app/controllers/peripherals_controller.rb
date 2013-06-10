@@ -1,6 +1,6 @@
 class PeripheralsController < ApplicationController
   	
-
+	layout 'pd_display'
 
 # Checks database for updated entries. if there are some, it sends a json request to a jqeury/ajax listener to reload page    
 

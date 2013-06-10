@@ -1,15 +1,78 @@
-<h1>IdéBanken</h1>
+<div class="row">
+	<div class="span11 offset1">
+		<h1>IdéBanken</h1>
+	</div>
+</div>
 
-<% @posts.each do |post| %>
-	<h2><%= link_to post.title, post %></h2>
-<!--
-	<p><%= post.content %></p>
-	<p>
-		<%= link_to "Edit", edit_post_path(post) %> | 
-		<%= link_to "Delete", post, :confirm => "Are you sure you want to delete post?", :method => :delete %>
-	</p>
-	<hr />
--->
-<% end %>
-
-<p><%= link_to "Add a New Post", new_post_path %> </p>
+<div class="row">
+	<div class="span6">
+		<h3>Add a New Idea</h3>
+		
+		
+		
+		<%= form_for @post do |form| %>
+			<% if @post.errors.any? %>
+				<h2>Errors:</h2>
+				<ul>
+					<% @post.errors.full_messages.each do |message| %>
+						<li><%= message %></li>
+					<% end %>
+				</ul>
+			<% end %>
+			<p>
+				<%= form.label :title %> 
+				<%= form.text_field :title %>
+			</p>
+			<p>
+				<%= form.label :content %> 
+				<%= form.text_area :content, :class => "span5" %>
+			</p>
+			<div class="row">
+				<div class="span1 offset1">
+					<%= form.label :status %>
+				</div>
+				<div class="span4">
+					<%= form.select(:status, [['Idea', 1], ['In Development', 2]]) %>
+				</div>
+			</div>
+			<div id="slider"></div>
+			<%= form.hidden_field :progress %>
+			<p>
+				<%= form.submit "Submit Idea", :class => "btn" %>
+			</p>
+		<% end %>
+	</div>
+	<div class="span6">
+		<h3>Resent Ideas</h3>
+		<ol>
+			<% @latest.each do |post| %>
+				<li>
+					<h2 class="idea-links"><%= link_to post.title, post %></h2>
+					<small>Updated: <%= post.updated_at %></small>
+					<small> - by : <%= post.modified_by %></small>	
+				</li>
+			<% end %>
+		</ol>
+	
+	</div>
+	<div class="span6">
+		<h3>Stored Ideas</h3>
+		<ul>		
+			<% @posts.each do |post| %>
+				<li>
+				<h2 class="idea-links"><%= link_to post.title, post %> </h2>
+				<small class="author"> Updated by: <%= post.modified_by %></small>
+				
+				</li>
+			<!--
+				<p><%= post.content %></p>
+				<p>
+					<%= link_to "Edit", edit_post_path(post) %> | 
+					<%= link_to "Delete", post, :confirm => "Are you sure you want to delete post?", :method => :delete %>
+				</p>
+				<hr />
+			-->
+			<% end %>
+		</ul>
+	</div>
+</div>

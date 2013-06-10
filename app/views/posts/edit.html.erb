@@ -22,6 +22,12 @@
 		<%= form.text_area :content %>
 	</p>
 	<p>
+		<%= form.select(:status, [['Idea', 1], ['In Development', 2]]) %>
+	</p>
+	<div id="slider"></div>
+	<%= form.hidden_field :progress %>
+
+	<p>
 		<%= form.submit "Update Post"  %>
 	</p>
 	<p>
