@@ -26,3 +26,17 @@
 .author{
 	font-size: small;
 }
+
+.pd-element{
+	padding: 20px;
+	background-color: black;
+	color: white;
+}
+
+.pd-container{
+	margin: 20px;
+}
+
+.progress{
+	margin-top: 10px;
+}

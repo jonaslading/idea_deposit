@@ -18,7 +18,8 @@ function ideaPoll(){
 			
 			if(data.data.length > 0){
 				for(var i=0;i<data.data.length;i++){
-					html=html+"<div class='project'><h1 class='header'>"+data.data[i].title+"</h1><p>"+data.data[i].content+"</p>";
+					html=html+"<div class = 'row'><div class='span4 offset4 pd-element'><h2>"+data.data[i].title+"</h2><small>updated: "+data.data[i].updated_at+"</small><small> - by : "+data.data[i].modified_by+"</small><div class='progress'><div class='bar' style='width: "+data.data[i].progress+"%'></div></div></div></div>"
+					
 				}			
 				$('#pd').html(html)
 			}
