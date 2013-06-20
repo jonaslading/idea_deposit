@@ -6,6 +6,9 @@
   =require twitter-bootstrap-static/fontawesome
   */
  
+#pd-body{
+	background-color: white;
+}
  .idea-links{
 	 margin-bottom: 0px;
  }

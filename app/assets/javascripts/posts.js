@@ -23,17 +23,17 @@ $(function(){
     });
     
     
-	$('#slider').hide();
+	$('#progress-field').hide();
 	if($('select#post_status').val() == 2){
-			$('#slider').show();
+			$('#progress-field').show();
 	}
 
 	
 	$("select[name='post[status]']").bind('change',function(){
 		if($('select#post_status').val() == 2){
-			$('#slider').show();
+			$('#progress-field').show();
 		}else{
-			$('#slider').hide();
+			$('#progress-field').hide();
 		}
 
 	});

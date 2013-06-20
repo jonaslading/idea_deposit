@@ -3,6 +3,7 @@
 // You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(function(){
+	
 	if($('#pd').length > 0){
 		setTimeout(ideaPoll, 4000);
 	}
@@ -18,7 +19,10 @@ function ideaPoll(){
 			
 			if(data.data.length > 0){
 				for(var i=0;i<data.data.length;i++){
-					html=html+"<div class = 'row'><div class='span4 offset4 pd-element'><h2>"+data.data[i].title+"</h2><small>updated: "+data.data[i].updated_at+"</small><small> - by : "+data.data[i].modified_by+"</small><div class='progress'><div class='bar' style='width: "+data.data[i].progress+"%'></div></div></div></div>"
+					if(data.data[i].status == 2){
+						html=html+"<div class = 'row'><div class='span4 offset4 pd-element'><h2>"+data.data[i].title+"</h2><small>updated: "+data.data[i].updated_at+"</small><small> - by : "+data.data[i].modified_by+"</small><div class='progress'><div class='bar' style='width: "+data.data[i].progress+"%'></div></div></div></div>"
+					} else {
+						html=html+"<div class = 'row'><div class='span4 offset4 pd-element'><h2>"+data.data[i].title+"</h2><small>updated: "+data.data[i].updated_at+"</small><small> - by : "+data.data[i].modified_by+"</small><div class='progress progress-warning'><div class='bar' style='width: 100%'></div></div></div></div>"					}
 					
 				}			
 				$('#pd').html(html)
