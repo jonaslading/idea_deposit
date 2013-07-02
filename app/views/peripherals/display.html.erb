@@ -1,17 +1,23 @@
 
-	<div class="pd-container">		
-		<div id= "pd" data-url="<%= :peripherals %>" >
+	<div class="pd-container">
+		<div id= "pd" data-url="<%= :peripherals %>">
 			<% @lasttwo.each do |post| %>
 			<div class = "row">	
 				<div class="span4 offset4 pd-element">
 					
 					<h2><%= post.title%></h2>
-					<small>updated: <%= post.updated_at %></small>
+					<small>updated: <%= post.updated_at.strftime("%d/%m %H:%M") %></small>
 					<small> - by : <%= post.modified_by %></small>
 					
-					<div class="progress">
-						<div class="bar" style="width: <%= post.progress%>%"></div>
-					</div>
+					<% if post.status == "1" then %>
+						<div class="progress progress-warning">
+							<div class="bar" style="width: 100%"></div>
+						</div>		
+					<% else %>
+						<div class="progress">
+							<div class="bar" style="width: <%= post.progress%>%"></div>
+						</div>		
+					<% end %>
 				</div>
 			</div>
 			<% end %>
