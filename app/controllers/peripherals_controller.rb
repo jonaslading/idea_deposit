@@ -16,6 +16,7 @@ class PeripheralsController < ApplicationController
 		end
 	end
 	
+	
 	def display
 		@fixeddate = OpenStruct.new
 		@fixeddate.dates=[]

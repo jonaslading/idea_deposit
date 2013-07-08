@@ -15,7 +15,8 @@
 #footer {
            height: 100px;
          }
-#pd-body {
+#pd-body {	background-color: black;
+
            min-height: 100%;
            height: auto !important;
            height: 100%;
@@ -23,7 +24,6 @@
            margin: 0 auto -100px;
          }
 body{
-	background-color: black;
 }
  .idea-links{
 	 margin-bottom: 0px;
@@ -61,7 +61,7 @@ body{
 	border: gray;	 
 	border-color: #ffd900;
 	border-width: thick;
-	border-style: dashed;
+	border-style: solid;
 }
 
 .pd-container{

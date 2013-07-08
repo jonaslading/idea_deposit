@@ -1,0 +1,28 @@
+<% if idea_counter == 1 then%>
+				<div class = "row">	
+					<div class="span4 offset1 pd-element">
+<% elsif idea_counter == 2 then%>
+				
+					<div class="span4 offset2 pd-element">
+<% else %>					
+				<div class = "row">	
+					<div class="span4 offset4 pd-element">					
+<% end %>					
+						<h2><%= idea.title%></h2>
+						<small>updated: <%= idea.updated_at.strftime("%d/%m %H:%M") %></small>
+						<small> - by : <%= idea.modified_by %></small>
+						
+						<% if idea.status == "1" then %>
+							<div class="progress progress-warning">
+								<div class="bar" style="width: 100%"></div>
+							</div>		
+						<% else %>
+							<div class="progress">
+								<div class="bar" style="width: <%= idea.progress%>%"></div>
+							</div>		
+						<% end %>
+					
+<% if idea_counter != 1 then%>					
+					</div>
+<% end %>
+				</div>

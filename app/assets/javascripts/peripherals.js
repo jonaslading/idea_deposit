@@ -9,6 +9,9 @@ $(function(){
 	}
 });
 
+
+
+
 function ideaPoll(){
 	//$.get($('#pd').data('url'));
 	
@@ -18,6 +21,12 @@ function ideaPoll(){
 			var html='';
 			
 			if(data.data.length > 0){
+			
+			// reloads page if changes has been made in project database
+				window.location.reload(true);
+				//setTimeout(10000);
+// old method of changing the content of #pd in js
+/*	
 				for(var i=0;i<data.data.length;i++){
 					if(i==0){
 						if(data.data[i].status == 2){
@@ -46,6 +55,7 @@ function ideaPoll(){
 					
 				}			
 				$('#pd').html(html)
+*/
 			}
 		},
 		error:function(err){
