@@ -11,7 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130606125812) do
+ActiveRecord::Schema.define(:version => 20130708091950) do
+
+  create_table "colors", :force => true do |t|
+    t.string   "user"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "posts", :force => true do |t|
     t.string   "title"
@@ -21,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20130606125812) do
     t.datetime "updated_at",  :null => false
     t.string   "status"
     t.integer  "progress"
+    t.integer  "color_id"
   end
 
 end

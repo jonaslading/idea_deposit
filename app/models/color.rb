@@ -1,3 +1,3 @@
 class Color < ActiveRecord::Base
-  attr_accessible :color_id, :user
+  attr_accessible :user
 end

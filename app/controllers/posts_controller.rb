@@ -63,8 +63,14 @@ class PostsController < ApplicationController
 		client = DropboxClient.new(dbsession, ACCESS_TYPE) #raise an exception if session not 
 		info = client.account_info
 		@post.modified_by = "#{info['display_name']}" 
+		
+		#adds user to color table if he's not there already
+		color = Color.find_or_creete_by_user(:user => "#{info['display_name']}")
+		@post.color_id = color.id
+		
 		if @post.save
-
+		
+			
 			#creates a idea-folder in the shared dropbox directory
 			client.file_create_folder(ROOT_FOLDER+params[:post][:title])
 			redirect_to posts_path, :notice => "Your idea was saved"
@@ -84,8 +90,12 @@ class PostsController < ApplicationController
 		client = DropboxClient.new(dbsession, ACCESS_TYPE) #raise an exception if session not authorized
 		info = client.account_info
 		@post.modified_by = "#{info['display_name']}" 
+		
+		color = Color.find_or_create_by_user(:user => "#{info['display_name']}")
+		@post.color_id = color.id
 
 		if @post.update_attributes(params[:post])
+
 			redirect_to posts_path, :notice => "Your idea has been updated"
 		else
 			render "edit"

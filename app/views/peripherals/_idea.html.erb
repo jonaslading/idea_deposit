@@ -1,12 +1,12 @@
 <% if idea_counter == 1 then%>
 				<div class = "row">	
-					<div class="span4 offset1 pd-element">
+					<div class="span4 offset1 pd-element<%= idea.color_id %>">
 <% elsif idea_counter == 2 then%>
 				
-					<div class="span4 offset2 pd-element">
+					<div class="span4 offset2 pd-element<%= idea.color_id %>">
 <% else %>					
 				<div class = "row">	
-					<div class="span4 offset4 pd-element">					
+					<div class="span4 offset4 pd-element<%= idea.color_id %>">					
 <% end %>					
 						<h2><%= idea.title%></h2>
 						<small>updated: <%= idea.updated_at.strftime("%d/%m %H:%M") %></small>
