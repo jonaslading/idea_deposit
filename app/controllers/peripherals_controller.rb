@@ -18,19 +18,11 @@ class PeripheralsController < ApplicationController
 	
 	
 	def display
-		@fixeddate = OpenStruct.new
-		@fixeddate.dates=[]
+
 		
 		@posts = Post.all
 		@lasttwo = Post.limit(3).order('updated_at desc')
-		@newposts = Post.where('updated_at > ?', Time.now - 2.hours)
-		
-		
-		
-#  		@lasttwo.each do |i|
-#  			#do your string manipulation shizzle e.g.
-#  			@fixeddate.dates.push(i['updated_at'].split(' ').last)	
-#  		end
+
 	end
 
 

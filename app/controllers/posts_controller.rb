@@ -25,7 +25,7 @@ class PostsController < ApplicationController
 			else
 				session[:dropbox_session] = dbsession.serialize
 				
-				@posts = Post.all
+				@posts = Post.order('title Asc')
 				@post = Post.new
 				@latest = Post.limit(3).order('updated_at desc')
 
@@ -65,7 +65,7 @@ class PostsController < ApplicationController
 		@post.modified_by = "#{info['display_name']}" 
 		
 		#adds user to color table if he's not there already
-		color = Color.find_or_creete_by_user(:user => "#{info['display_name']}")
+		color = Color.find_or_create_by_user(:user => "#{info['display_name']}")
 		@post.color_id = color.id
 		
 		if @post.save
@@ -75,8 +75,8 @@ class PostsController < ApplicationController
 			client.file_create_folder(ROOT_FOLDER+params[:post][:title])
 			redirect_to posts_path, :notice => "Your idea was saved"
 		else
-			render "new"
-			#redirect_to posts_path, :notice => "Your idea has not been saved"
+			#render "new"
+			redirect_to posts_path, :notice => "Your idea was NOT saved. Ideas must both a have unique title and content."
 		end
 	end
 	
@@ -98,7 +98,8 @@ class PostsController < ApplicationController
 
 			redirect_to posts_path, :notice => "Your idea has been updated"
 		else
-			render "edit"
+			redirect_to post_path(params[:id]), :notice => "Your idea was Not updated. All idea must have content."
+
 		end
 	end
 	

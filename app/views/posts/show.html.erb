@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="span12">
 		<h1><%=@post.title%>
-		<small class="author">Updated by: <%= @post.modified_by %> at <%= @post.updated_at %></small>
+		<small class="author">Updated by: <%= @post.modified_by %> at <%= @post.updated_at.strftime("%d/%m %H:%M") %></small>
 		</h1>
 		
 	</div>
