@@ -13,7 +13,8 @@ ACCESS_TYPE = :dropbox #The two valid values here are :app_folder and :dropbox
                           #https://www.dropbox.com/developers/apps
 
 class PostsController < ApplicationController
-	
+ 	
+
 	
 	def index
 		if  not session[:dropbox_session] then
@@ -43,6 +44,7 @@ class PostsController < ApplicationController
 			
 		dbsession = DropboxSession.deserialize(session[:dropbox_session])
 		client = DropboxClient.new(dbsession, ACCESS_TYPE) #raise an exception if session not authorized
+		info = client.account_info
 		dbcontentdata = client.metadata(ROOT_FOLDER+@post.title)
 		link = client.shares(ROOT_FOLDER+@post.title)
 		@folderlink = link['url']
@@ -51,11 +53,12 @@ class PostsController < ApplicationController
 			#do your string manipulation shizzle e.g.
 			@dbdata.paths.push(i['path'].split('/').last)	
 		end
+		
+		#log activity
+		record_activity("looked at idea: "+@post.title, "#{info['display_name']}")
+		
 	end
 	
-	def new
-		@post = Post.new
-	end
 	
 	def create
 		@post = Post.new(params[:post])
@@ -70,19 +73,18 @@ class PostsController < ApplicationController
 		
 		if @post.save
 		
+			#log activity
+			record_activity("created idea: "+@post.title, @post.modified_by)
 			
 			#creates a idea-folder in the shared dropbox directory
 			client.file_create_folder(ROOT_FOLDER+params[:post][:title])
 			redirect_to posts_path, :notice => "Your idea was saved"
 		else
-			#render "new"
+			
 			redirect_to posts_path, :notice => "Your idea was NOT saved. Ideas must both a have unique title and content."
 		end
 	end
 	
-	def edit
-		@post = Post.find(params[:id])
-	end
 	
 	def update
 		@post = Post.find(params[:id])
@@ -95,7 +97,10 @@ class PostsController < ApplicationController
 		@post.color_id = color.id
 
 		if @post.update_attributes(params[:post])
-
+			
+			#log activity			
+			record_activity("updated idea: "+@post.title, @post.modified_by)
+			
 			redirect_to posts_path, :notice => "Your idea has been updated"
 		else
 			redirect_to post_path(params[:id]), :notice => "Your idea was Not updated. All idea must have content."
@@ -107,8 +112,14 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 		dbsession = DropboxSession.deserialize(session[:dropbox_session])
 		client = DropboxClient.new(dbsession, ACCESS_TYPE) #raise an exception if session not authorized
+		info = client.account_info
+
 			#creates a idea-folder in the shared dropbox directory
 		client.file_delete(ROOT_FOLDER+@post.title)
+		
+			#log activity
+		record_activity("deleted at idea: "+@post.title, "#{info['display_name']}")
+		
 		@post.destroy
 		redirect_to posts_path, :notice => "Post has been deleted"
 	end
@@ -129,5 +140,13 @@ class PostsController < ApplicationController
 
             redirect_to :controller => 'posts' 
         end
+    end
+    
+    def record_activity(activity, name)
+	    @log = ActivityLog.new
+	    @log.user = name
+	    @log.activity = activity
+	    @log.ip_address = request.env['REMOTE_ADDR']
+	    @log.save
     end
 end
