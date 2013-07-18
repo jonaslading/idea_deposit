@@ -4,9 +4,9 @@ class PeripheralsController < ApplicationController
 
 # Checks database for updated entries. if there are some, it sends a json request to a jqeury/ajax listener to reload page    
 
-	def get_last_two
+	def get_latest
 		
-		if (Post.where('updated_at > ?', Time.now - 30.seconds).length > 0)
+		if (Post.where('updated_at > ?', Time.now - 15.seconds).length > 0)
 			
 			@lasttwo = Post.limit(3).order('updated_at desc')
 			render :json => { :data => @lasttwo }

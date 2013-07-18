@@ -5,7 +5,8 @@
 $(function(){
 	
 	if($('#pd').length > 0){
-		setTimeout(ideaPoll, 4000);
+		
+		setTimeout(ideaPoll, 15000);
 	}
 });
 
@@ -14,17 +15,18 @@ $(function(){
 
 function ideaPoll(){
 	//$.get($('#pd').data('url'));
+	var updated = false;
 	
-	$.ajax('/peripherals/get_last_two',{
+	$.ajax('/peripherals/get_latest',{
 		success:function(data){
 			console.log(data)
-			var html='';
+			
 			
 			if(data.data.length > 0){
 			
 			// reloads page if changes has been made in project database
 				window.location.reload(true);
-				//setTimeout(10000);
+				updated = true;
 // old method of changing the content of #pd in js
 /*	
 				for(var i=0;i<data.data.length;i++){
@@ -62,7 +64,9 @@ function ideaPoll(){
 			console.log('error on get request')
 		}
 	})
-	
-	setTimeout(ideaPoll, 4000);
-
+	if(updated){
+		setTimeout(ideaPoll, 15000);
+	} else {
+		setTimeout(ideaPoll, 4000);
+	}
 }

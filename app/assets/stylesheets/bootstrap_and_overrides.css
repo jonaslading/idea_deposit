@@ -38,6 +38,12 @@ width: 1028px !important;
  .span6{
 	 margin-bottom: 20px;
  }
+  .span1{
+	 margin-left: -15px;
+ }
+  .span3{
+	 margin-right: 20px;
+ }
  
  #num-ideas{
 	 float: right;
@@ -47,7 +53,7 @@ width: 1028px !important;
   	padding: 20px;
 	 margin-left: 0px;
 	 margin-bottom: 0px;
-	 background-color: #ffcc33;
+	 background-color: #fffff8;
  }
  
  #slider{
@@ -58,7 +64,9 @@ width: 1028px !important;
 	font-size: small;
 }
 
-
+.modified-by{
+	text-align: center;
+}
 
 .pd-container{
 	margin-top: 60px;
@@ -68,11 +76,22 @@ width: 1028px !important;
 	margin-top: 10px;
 	margin-bottom: 0px;
 }
+/* PD Idea status indication by border*/
 
+.status1{
+	border-radius: 30px;
+	border-style:dotted !important;
+
+}
+.status2{
+	border-radius: 0px;
+	border-style:solid !important;
+
+}
 
 /* User dependant idea styles */
 
-.pd-element{
+[class*="pd-element"]{
 	margin-bottom: 60px;
 	padding: 20px;
 	
@@ -80,56 +99,55 @@ width: 1028px !important;
 	color: white;
 	border-color: white;
 	border-width: 20px;
-	border-style: solid;
 }
+
 .pd-element1{
-	margin-bottom: 60px;
-	padding: 20px;
-	
-	background-color: black;
-	color: white;
-	border-color: #ffcc99;
-	border-width: 20px;
-	border-style: solid;
+
+	border-color: #cc99cc;
+
 }
 .pd-element2{
-	margin-bottom: 60px;
-	padding: 20px;
-	
-	background-color: black;
-	color: white;
+
 	border-color: #ffff99;
-	border-width: 20px;
-	border-style: solid;
+
 }
 .pd-element3{
-	margin-bottom: 60px;
-	padding: 20px;
-	
-	background-color: black;
-	color: white;
+
 	border-color: #99ccff;
-	border-width: 20px;
-	border-style: solid;
-	border-radius: 30px;
+
 }
 .pd-element4{
-	margin-bottom: 60px;
-	padding: 20px;
-	
-	background-color: black;
-	color: white;
-	border-color: #ffcccc;
-	border-width: 20px;
-	border-style: solid;
+
+	border-color: #ff6666;
+
 }
 .pd-element5{
-	margin-bottom: 60px;
-	padding: 20px;
-	
-	background-color: black;
-	color: white;
-	border-color: #ccff99;
-	border-width: 20px;
-	border-style: solid;
+
+	border-color: #66ff66;
+
+}
+.pd-element6{
+
+	border-color: #9999ff;
+
+}
+.pd-element7{
+
+	border-color: #cccccc;
+
+}
+.pd-element8{
+
+	border-color: #ffff66;
+
+}
+.pd-element9{
+
+	border-color: #ffffcc;
+
+}
+.pd-element10{
+
+	border-color: #ccffcc;
+
 }
