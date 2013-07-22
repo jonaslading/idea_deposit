@@ -80,7 +80,7 @@ width: 1028px !important;
 
 .status1{
 	border-radius: 30px;
-	border-style:dotted !important;
+	border-style:solid !important;
 
 }
 .status2{
@@ -95,8 +95,7 @@ width: 1028px !important;
 	margin-bottom: 60px;
 	padding: 20px;
 	
-	background-color: black;
-	color: white;
+	background-color: #fffff8;
 	border-color: white;
 	border-width: 20px;
 }

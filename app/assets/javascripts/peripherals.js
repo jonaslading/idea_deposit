@@ -16,8 +16,14 @@ $(function(){
 function ideaPoll(){
 	//$.get($('#pd').data('url'));
 	var updated = false;
-	
-	$.ajax('/peripherals/get_latest',{
+	var numIdeas = parseInt($('#num-ideas').html());
+
+	//$.ajax('/peripherals/get_latest'
+	$.ajax({  
+		type: 'POST', 
+		url: '/peripherals/get_latest', 
+		data: {'num_ideas' : numIdeas},
+    
 		success:function(data){
 			console.log(data)
 			
@@ -63,7 +69,7 @@ function ideaPoll(){
 		error:function(err){
 			console.log('error on get request')
 		}
-	})
+	});
 	if(updated){
 		setTimeout(ideaPoll, 15000);
 	} else {

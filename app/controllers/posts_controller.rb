@@ -50,7 +50,6 @@ class PostsController < ApplicationController
 		@folderlink = link['url']
 		
 		dbcontentdata['contents'].each do |i|
-			#do your string manipulation shizzle e.g.
 			@dbdata.paths.push(i['path'].split('/').last)	
 		end
 		
