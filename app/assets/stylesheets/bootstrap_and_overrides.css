@@ -44,6 +44,9 @@ width: 1028px !important;
   .span3{
 	 margin-right: 20px;
  }
+   .span5{
+	 margin-right: 0px;
+ }
  
  #num-ideas{
 	 float: right;
