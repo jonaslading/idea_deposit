@@ -54,7 +54,7 @@
 			<% @latest.each do |post| %>
 				<li>
 					<h2 class="idea-links"><%= link_to post.title, post %></h2>
-					<small>updated: <%= post.updated_at.getlocal.strftime("%d/%m %H:%M") %></small>
+					<small>updated: <%= post.updated_at.strftime("%d/%m %H:%M") %></small>
 					<small> - by : <%= post.modified_by %></small>	
 				</li>
 			<% end %>
