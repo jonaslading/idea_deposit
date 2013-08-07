@@ -39,12 +39,14 @@
 					<%= form.select(:status, [['Idea', 1], ['In Development', 2]]) %>
 				</div>
 			</div>
-		<div id="progress-field">
+		<!-- not necessary with no progress bar
+<div id="progress-field">
 				<%= form.label :progress %>
 				<div id="slider"> </div>
 				
 				<%= form.hidden_field :progress %>
 		</div>
+-->
 	
 		<p>
 			<%= form.submit "Update Idea"  %>
@@ -56,11 +58,11 @@
 	<div class="span6">
 		<!- list all files in dropbox folder   ->
 		<h3>Files in dropbox folder</h3>
-		<ul>
-		<% @dbdata.paths.each do |p| %>
-			<li>		<%= p %>	</li>
-		
+		<ul>		
+		<% @dbdata.filenames.each do |p| %>
+				<li>		<%= p %>	</li>
 		<% end %>
+		
 		</ul>
 		<small><%=link_to "link to folder", @folderlink%></small>
 	</div>

@@ -24,7 +24,7 @@ class PeripheralsController < ApplicationController
 
 		
 		@posts = Post.all
-		@lasttwo = Post.limit(3).order('updated_at desc')
+		@lasttwo = Post.limit(3).order('updated_at desc').reverse
 
 	end
 

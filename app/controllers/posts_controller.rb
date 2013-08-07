@@ -40,7 +40,7 @@ class PostsController < ApplicationController
 		@post = Post.find(params[:id])
 		
 		@dbdata = OpenStruct.new
-		@dbdata.paths=[]
+		@dbdata.filenames=[]
 			
 		dbsession = DropboxSession.deserialize(session[:dropbox_session])
 		client = DropboxClient.new(dbsession, ACCESS_TYPE) #raise an exception if session not authorized
@@ -50,7 +50,7 @@ class PostsController < ApplicationController
 		@folderlink = link['url']
 		
 		dbcontentdata['contents'].each do |i|
-			@dbdata.paths.push(i['path'].split('/').last)	
+			@dbdata.filenames.push(i['path'].split('/').last)
 		end
 		
 		#log activity
