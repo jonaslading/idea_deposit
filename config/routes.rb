@@ -1,5 +1,6 @@
 Blog::Application.routes.draw do
-
+	
+	root :to => 'posts#index'
 	match 'peripheral', :controller => 'peripherals', :action => 'display'
 	match 'posts/authorize', :controller => 'posts', :action => 'authorize'
 	match 'peripherals/get_latest' => 'peripherals#get_latest'
