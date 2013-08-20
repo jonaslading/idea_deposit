@@ -4,7 +4,7 @@ require 'dropbox_sdk'
 # and then uploads a file to the user's Dropbox.
 
 # You must set these
-ROOT_FOLDER = "/IdeBankenTest/" # Name of the shared dropbox folder
+ROOT_FOLDER = "/IdeBanken/" # Name of the shared dropbox folder
 APP_KEY = "1znic8owutrq2r6"
 APP_SECRET = "iwbpegroh2dilfn"
 ACCESS_TYPE = :dropbox #The two valid values here are :app_folder and :dropbox
