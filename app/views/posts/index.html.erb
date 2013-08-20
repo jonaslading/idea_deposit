@@ -5,7 +5,7 @@
 </div>
 
 <div class="row">
-	<div class="span6">
+	<div class="span7">
 		<h3>Add a New Idea</h3>
 		
 		
@@ -25,7 +25,7 @@
 			</p>
 			<p>
 				<%= form.label :content %> 
-				<%= form.text_area :content, :class => "span5" %>
+				<%= form.text_area :content, :class => "span6" %>
 			</p>
 			<div class="row">
 				<div class="span1 offset1">
@@ -48,13 +48,13 @@
 			</p>
 		<% end %>
 	</div>
-	<div class="span6">
+	<div class="span5">
 		<h3>Resent Ideas</h3>
 		<ol>
 			<% @latest.each do |post| %>
 				<li>
 					<h2 class="idea-links"><%= link_to post.title, post %></h2>
-					<small>updated: <%= post.updated_at.strftime("%d/%m %H:%M") %></small>
+					<small>updated: <%= post.updated_at.getlocal.strftime("%d/%m %H:%M") %></small>
 					<small> - by : <%= post.modified_by %></small>	
 				</li>
 			<% end %>

@@ -31,15 +31,21 @@ body {
  .idea-links{
 	 margin-bottom: 0px;
  }
+ #back{
+	 margin-top: 20px;
+	 margin-bottom: -35px;
+	 
+ }
  .span4{
 	 margin-bottom: 10px;
+ }
+ .span11{
+	 margin-bottom: 20px;
  }
  .span6{
 	 margin-bottom: 20px;
  }
-  .span1{
-	 margin-left: -15px;
- }
+
   .span3{
 	 margin-right: 0px;
  }
