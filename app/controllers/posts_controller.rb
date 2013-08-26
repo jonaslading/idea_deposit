@@ -1,4 +1,5 @@
 require 'dropbox_sdk'
+require 'base64'
 
 # This is an example of a Rails 3 controller that authorizes an application
 # and then uploads a file to the user's Dropbox.
@@ -41,6 +42,7 @@ class PostsController < ApplicationController
 		
 		@dbdata = OpenStruct.new
 		@dbdata.filenames=[]
+#		@dbdata.thumbs=[]
 			
 		dbsession = DropboxSession.deserialize(session[:dropbox_session])
 		client = DropboxClient.new(dbsession, ACCESS_TYPE) #raise an exception if session not authorized
@@ -50,6 +52,15 @@ class PostsController < ApplicationController
 		@folderlink = link['url']
 		
 		dbcontentdata['contents'].each do |i|
+	#code for generating thumbnail pictures for dropbox content - but it's buggy at the moment		
+# 			if i['thumb_exists'] #should check if there is a thumbnail, but doesn't work
+# 				@dbdata.thumbs.push(Base64.strict_encode64(client.thumbnail(i['path'].delete(' '),'xs'))) #throws error "thre is no thumbnail..."
+# 			else	
+# 				@dbdata.thumbs.push('iVBORw0KGgoAAAANSUhEUgAAAAUA
+# AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO
+# 9TXL0Y4OHwAAAABJRU5ErkJggg==')
+# 
+# 			end	
 			@dbdata.filenames.push(i['path'].split('/').last)
 		end
 		

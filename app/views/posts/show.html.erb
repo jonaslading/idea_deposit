@@ -1,10 +1,10 @@
 	
-	<div id ="back">
-			<%= button_to "Back", posts_path, :class => "btn btn-info" %>
-	</div>
-	<div class="row">
 
-	<div class="span11 offset1">
+<div class="row" id="top">
+		<div class="span2" id ="back">
+		<a href="/" class="btn btn-primary btn-large"><i class="icon-white icon-chevron-left"></i> Back</a>
+		</div>
+	<div class="span10">
 		<h1><%=@post.title%>
 		<small class="author">Updated by: <%= @post.modified_by %> at <%= @post.updated_at.getlocal.strftime("%d/%m %H:%M") %></small>
 		</h1>
@@ -53,7 +53,7 @@
 		</div>
 -->
 	
-		<div >
+		<div class="span1 offset1" >
 			<%= form.submit "Update Idea", :class => "btn" %>
 		</div>
 
@@ -63,20 +63,24 @@
 	<div class="span5">
 		<!- list all files in dropbox folder   ->
 		<h3>Files in dropbox folder</h3>
-		<ul>		
-		<% @dbdata.filenames.each do |p| %>
-				<li>		<%= p %>	</li>
-		<% end %>
-		
-		</ul>
+		<table>
+			
+			<% @dbdata.filenames.each do |val| %>
+				<tr>
+				<td><%= val %></td>
+				</tr>				
+			<% end %>
+
+
+		</table>
 		<small><%=link_to "go to dropbox web folder", @folderlink, :target => '_blank'%></small>
 	</div>
 </div>
 <div class="row">
 
-	<div class="span6 offset7">
+	<div class="span2 offset8">
 					<!-- Button to trigger modal -->
-		<a href="#myModal" role="button" class="" data-toggle="modal">Delete Idea</a>
+		<a href="#myModal" role="button" class="btn-danger" data-toggle="modal">Delete Idea</a>
 		 
 		<!-- Modal -->
 		<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -85,7 +89,7 @@
 		    <h3 id="myModalLabel">Delete "<%=@post.title%>"</h3>
 		  </div>
 		  <div class="modal-body">
-		    <p>Are you sure you want to delete this idea and all files its associated dropbox folder?</p>
+		    <p>Are you sure you want to delete this idea and all files in the associated dropbox folder?</p>
 		  </div>
 		  <div class="modal-footer">
 		  	<%= link_to "Delete", @post, :method => :delete %>

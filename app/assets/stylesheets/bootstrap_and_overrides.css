@@ -31,10 +31,13 @@ body {
  .idea-links{
 	 margin-bottom: 0px;
  }
+ #top{
+	 margin-bottom: 30px;
+	 margin-top: 30px;
+ }
+ 
  #back{
-	 margin-top: 20px;
-	 margin-bottom: -35px;
-	 
+		margin-top: 10px; 
  }
  .span4{
 	 margin-bottom: 10px;
